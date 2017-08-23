@@ -88,15 +88,15 @@ install::
 	( \
 	  $(MODULE_LOAD_PYTHON); \
           export PYTHONPATH=$(ROOT)/$(PKGROOT)/lib/python$(PYVERSION)/site-packages:$${PYTHONPATH}; \
-          cd $(KEYSTONECLIENT_DIR); \
-          python setup.py build; \
-	  python setup.py install --prefix=$(ROOT)/$(PKGROOT); \
-	  cd ../$(FUTURES_DIR); \
+	  cd $(FUTURES_DIR); \
 	  python setup.py build; \
+	  python setup.py install --prefix=$(ROOT)/$(PKGROOT); \
+          cd ../$(KEYSTONECLIENT_DIR); \
+          python setup.py build; \
 	  python setup.py install --prefix=$(ROOT)/$(PKGROOT); \
 	  cd ../$(SOURCE_DIR); \
 	  python setup.py build; \
-	  python setup.py install --prefix=$(ROOT)/$(PKGROOT); \
+	  python setup.py install --prefix=$(ROOT)/$(PKGROOT) --root=/ --single-version-externally-managed; \
 	)
 	$(INSTALL_LICENSE_FILES)
 	@echo "::: Package $(NAME) install complete :::"

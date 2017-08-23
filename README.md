@@ -52,15 +52,10 @@ specify the names of compiler and MPI modulefiles to use for building the
 software, e.g.,
 
 ```shell
-make ROLLCOMPILER=intel ROLLMPI=mvapich2_ib 2>&1 | tee build.log
+make 2>&1 | tee build.log
 ```
 
-The build process recognizes "gnu", "intel" or "pgi" as the value for the
-`ROLLCOMPILER` variable; any MPI modulefile name may be used as the value of
-the `ROLLMPI` variable.  The default values are "gnu" and "rocks-openmpi".
-<ENDIF>
 
-<IF APPROPRIATE>
 The roll supports specifying building with/for python versions other than
 the one included with the o/s.  To use this feature, specify a `ROLLPY` make
 variable that includes a space-delimited list of python modulefiles, e.g.,
@@ -68,13 +63,6 @@ variable that includes a space-delimited list of python modulefiles, e.g.,
 ```shell
 % make ROLLPY=opt-python 2>&1 | tee build.log
 ```
-<ENDIF>
-
-<IF APPROPRIATE>
-For gnu compilers, the roll supports a `ROLLOPTS` make variable value of
-'avx' or 'avx2', indicating that the target architecture supports AVX/AVX2
-instructions.
-<ENDIF>
 
 
 ## Installation

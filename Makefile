@@ -73,7 +73,7 @@ default:
           perl -pi -e 's/PYVERSION/'$${version}'/g if m/PYVERSION/' $$o; \
         done
 
-	$(MAKE) ROLLPY="$(ROLLPY)" roll
+	$(MAKE) ROLLPY="$(ROLLPY)" PYVERSION="$(PYVERSION)" roll
 
 distclean:: clean
 	for i in `ls nodes/*.in`; do \
