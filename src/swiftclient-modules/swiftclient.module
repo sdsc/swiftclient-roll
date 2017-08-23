@@ -1,0 +1,11 @@
+#%Module1.0
+module-whatis "swiftclient"
+module-whatis "Version: VERSION"
+module-whatis "Description: swiftclient"
+module-whatis "Compiler: ROLLCOMPILER"
+setenv SWIFTCLIENTHOME /opt/swiftclient
+prepend-path PATH /opt/swiftclient/bin
+foreach lib [glob -nocomplain /opt/swiftclient/lib*/pythonPYVER/site-packages] {
+  prepend-path PYTHONPATH $lib
+}
+module load ROLLPY scipy
