@@ -63,10 +63,6 @@ include Rules.mk
 include $(SDSCDEVEL)/Pull.mk
 include $(SDSCDEVEL)/Rules.mk
 
-SETUPOPTS =
-ifeq ("$(COMPILERNAME)", "intel")
-  SETUPOPTS = "--compiler=intel"
-endif
 
 $(NAME).spec: DESCRIPTION LICENSE
 
@@ -96,10 +92,10 @@ install::
           python setup.py build; \
 	  python setup.py install --prefix=$(ROOT)/$(PKGROOT); \
 	  cd ../$(FUTURES_DIR); \
-	  python setup.py build $(SETUPOPTS); \
+	  python setup.py build; \
 	  python setup.py install --prefix=$(ROOT)/$(PKGROOT); \
 	  cd ../$(SOURCE_DIR); \
-	  python setup.py build $(SETUPOPTS); \
+	  python setup.py build; \
 	  python setup.py install --prefix=$(ROOT)/$(PKGROOT); \
 	)
 	$(INSTALL_LICENSE_FILES)
