@@ -46,15 +46,6 @@ the roll on a Rocks frontend, proceed to the installation step. If you built the
 roll on a Rocks development appliance, you need to copy the roll to your Rocks
 frontend before continuing with installation.
 
-This roll source supports building with different compilers and for different
-MPI flavors.  The `ROLLCOMPILER` and `ROLLMPI` make variables can be used to
-specify the names of compiler and MPI modulefiles to use for building the
-software, e.g.,
-
-```shell
-make 2>&1 | tee build.log
-```
-
 
 The roll supports specifying building with/for python versions other than
 the one included with the o/s.  To use this feature, specify a `ROLLPY` make
