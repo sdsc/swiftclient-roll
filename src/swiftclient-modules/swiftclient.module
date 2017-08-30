@@ -8,4 +8,4 @@ prepend-path PATH /opt/swiftclient/bin
 foreach lib [glob -nocomplain /opt/swiftclient/lib*/pythonPYVER/site-packages] {
   prepend-path PYTHONPATH $lib
 }
-module load ROLLPY scipy
+module load ROLLPY
