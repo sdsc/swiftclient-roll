@@ -94,6 +94,30 @@ install::
 	  cd ../$(REQUESTS_DIR); \
 	  python setup.py build; \
 	  python setup.py install --prefix=$(ROOT)/$(PKGROOT); \
+	  cd ../$(STEVEDORE_DIR); \
+	  python setup.py build; \
+	  python setup.py install --prefix=$(ROOT)/$(PKGROOT); \
+	  cd ../$(POSITIONAL_DIR); \
+	  python setup.py build; \
+	  python setup.py install --prefix=$(ROOT)/$(PKGROOT); \
+	  cd ../$(OSLO.CONFIG_DIR); \
+	  python setup.py build; \
+	  python setup.py install --prefix=$(ROOT)/$(PKGROOT); \
+	  cd ../$(KEYSTONEAUTH1_DIR); \
+	  python setup.py build; \
+	  python setup.py install --prefix=$(ROOT)/$(PKGROOT); \
+	  cd ../$(DEBTCOLLECTOR_DIR); \
+	  python setup.py build; \
+	  python setup.py install --prefix=$(ROOT)/$(PKGROOT); \
+	  cd ../$(OSLO.UTILS_DIR); \
+	  python setup.py build; \
+	  python setup.py install --prefix=$(ROOT)/$(PKGROOT); \
+	  cd ../$(OSLO.SERIALIZATION); \
+	  python setup.py build; \
+	  python setup.py install --prefix=$(ROOT)/$(PKGROOT); \
+	  cd ../$(OSLO.I18N); \
+	  python setup.py build; \
+	  python setup.py install --prefix=$(ROOT)/$(PKGROOT); \
           cd ../$(KEYSTONECLIENT_DIR); \
           python setup.py build; \
 	  python setup.py install --prefix=$(ROOT)/$(PKGROOT); \
