@@ -112,10 +112,10 @@ install::
 	  cd ../$(OSLO.UTILS_DIR); \
 	  python setup.py build; \
 	  python setup.py install --prefix=$(ROOT)/$(PKGROOT); \
-	  cd ../$(OSLO.SERIALIZATION); \
+	  cd ../$(OSLO.SERIALIZATION_DIR); \
 	  python setup.py build; \
 	  python setup.py install --prefix=$(ROOT)/$(PKGROOT); \
-	  cd ../$(OSLO.I18N); \
+	  cd ../$(OSLO.I18N_DIR); \
 	  python setup.py build; \
 	  python setup.py install --prefix=$(ROOT)/$(PKGROOT); \
           cd ../$(KEYSTONECLIENT_DIR); \
