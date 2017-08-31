@@ -6,6 +6,6 @@
          220304  dab65b99f1bacdb6c970dba6e18932794658a2b3  keystoneauth1-3.2.0.tar.gz
          129139  03fa0388a8e488c07800e4b23670973ba5277fde  oslo.config-4.11.0.tar.gz
          505985  30084c79f843c35d89a76c23d05c79c888cbe0a2  stevedore-1.25.0.tar.gz
-          32758  68497f1e490f1ff830c2c0e27ad7ca67b1b1ab9e  oslo.i18n-2.0.0.tar.gz
           28693  6be95fd3e2b51fbdc0a25c2d9d7ec5910d02b938  oslo.serialization-2.20.0.tar.gz
           85122  3e5d6966a0bdc75db514745881dcea749f60fe68  oslo.utils-3.28.0.tar.gz
+          42858  657160c1d6df5226bce5067b7e50d869be3eafb9  oslo.i18n-3.17.0.tar.gz
