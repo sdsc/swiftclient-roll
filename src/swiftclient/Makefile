@@ -64,7 +64,7 @@ include $(SDSCDEVEL)/Pull.mk
 include $(SDSCDEVEL)/Rules.mk
 
 
-$(NAME).spec: DESCRIPTION LICENSE
+$(NAME).spec: DESCRIPTION
 
 DESCRIPTION:
 	$(MODULE_LOAD_PYTHON); \
@@ -73,10 +73,6 @@ DESCRIPTION:
 	  $(DESCRIBE_PYTHON); \
 	) > $@
 
-
-LICENSE: $(SRC_DIRS)
-	$(CHECK_LICENSE_FILES)
-	echo "Apache" > $@
 
 CACHE_DIR=$(REDHAT.ROOT)/cache
 
