@@ -124,6 +124,9 @@ install::
 	  cd ../$(WRAPT_DIR); \
 	  python setup.py build; \
 	  python setup.py install --prefix=$(ROOT)/$(PKGROOT); \
+	  cd ../$(ISO8601_DIR); \
+	  python setup.py build; \
+	  python setup.py install --prefix=$(ROOT)/$(PKGROOT); \
           cd ../$(KEYSTONECLIENT_DIR); \
           python setup.py build; \
 	  python setup.py install --prefix=$(ROOT)/$(PKGROOT); \
