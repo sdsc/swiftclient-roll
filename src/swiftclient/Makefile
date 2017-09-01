@@ -136,6 +136,9 @@ install::
 	  cd ../$(RFC3986_DIR); \
 	  python setup.py build; \
 	  python setup.py install --prefix=$(ROOT)/$(PKGROOT); \
+	  cd ../$(CERTIFI_DIR); \
+	  python setup.py build; \
+	  python setup.py install --prefix=$(ROOT)/$(PKGROOT); \
           cd ../$(KEYSTONECLIENT_DIR); \
           python setup.py build; \
 	  python setup.py install --prefix=$(ROOT)/$(PKGROOT); \
