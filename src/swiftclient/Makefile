@@ -84,7 +84,7 @@ install::
 	( \
 	  $(MODULE_LOAD_PYTHON); \
           export PYTHONPATH=$(ROOT)/$(PKGROOT)/lib/python$(PYVERSION)/site-packages:$${PYTHONPATH}; \
-	  pip install --install-option="--prefix=$(ROOT)/$(PKGROOT)" swiftclient
+	  pip install --install-option="--prefix=$(ROOT)/$(PKGROOT)" swiftclient; \
 	)
 	$(INSTALL_LICENSE_FILES)
 	@echo "::: Package $(NAME) install complete :::"
