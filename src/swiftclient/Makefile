@@ -118,6 +118,12 @@ install::
 	  cd ../$(OSLO.I18N_DIR); \
 	  python setup.py build; \
 	  python setup.py install --prefix=$(ROOT)/$(PKGROOT); \
+	  cd ../$(BABEL_DIR); \
+	  python setup.py build; \
+	  python setup.py install --prefix=$(ROOT)/$(PKGROOT); \
+	  cd ../$(WRAPT_DIR); \
+	  python setup.py build; \
+	  python setup.py install --prefix=$(ROOT)/$(PKGROOT); \
           cd ../$(KEYSTONECLIENT_DIR); \
           python setup.py build; \
 	  python setup.py install --prefix=$(ROOT)/$(PKGROOT); \
