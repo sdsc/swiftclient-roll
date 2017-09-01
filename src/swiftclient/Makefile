@@ -64,7 +64,7 @@ include $(SDSCDEVEL)/Pull.mk
 include $(SDSCDEVEL)/Rules.mk
 
 
-$(NAME).spec: DESCRIPTION
+$(NAME).spec: DESCRIPTION LICENSE
 
 DESCRIPTION:
 	$(MODULE_LOAD_PYTHON); \
@@ -73,6 +73,10 @@ DESCRIPTION:
 	  $(DESCRIBE_PYTHON); \
 	) > $@
 
+
+LICENSE: $(SRC_DIRS)
+	$(CHECK_LICENSE_FILES)
+	echo "Apache" > $@
 
 CACHE_DIR=$(REDHAT.ROOT)/cache
 
@@ -84,7 +88,48 @@ install::
 	( \
 	  $(MODULE_LOAD_PYTHON); \
           export PYTHONPATH=$(ROOT)/$(PKGROOT)/lib/python$(PYVERSION)/site-packages:$${PYTHONPATH}; \
-	  pip install --install-option="--prefix=$(ROOT)/$(PKGROOT)" python-swiftclient; \
+	  cd $(FUTURES_DIR); \
+	  python setup.py build; \
+	  python setup.py install --prefix=$(ROOT)/$(PKGROOT); \
+	  cd ../$(REQUESTS_DIR); \
+	  python setup.py build; \
+	  python setup.py install --prefix=$(ROOT)/$(PKGROOT); \
+	  cd ../$(STEVEDORE_DIR); \
+	  python setup.py build; \
+	  python setup.py install --prefix=$(ROOT)/$(PKGROOT); \
+	  cd ../$(POSITIONAL_DIR); \
+	  python setup.py build; \
+	  python setup.py install --prefix=$(ROOT)/$(PKGROOT); \
+	  cd ../$(OSLO.CONFIG_DIR); \
+	  python setup.py build; \
+	  python setup.py install --prefix=$(ROOT)/$(PKGROOT); \
+	  cd ../$(KEYSTONEAUTH1_DIR); \
+	  python setup.py build; \
+	  python setup.py install --prefix=$(ROOT)/$(PKGROOT); \
+	  cd ../$(DEBTCOLLECTOR_DIR); \
+	  python setup.py build; \
+	  python setup.py install --prefix=$(ROOT)/$(PKGROOT); \
+	  cd ../$(OSLO.UTILS_DIR); \
+	  python setup.py build; \
+	  python setup.py install --prefix=$(ROOT)/$(PKGROOT); \
+	  cd ../$(OSLO.SERIALIZATION_DIR); \
+	  python setup.py build; \
+	  python setup.py install --prefix=$(ROOT)/$(PKGROOT); \
+	  cd ../$(OSLO.I18N_DIR); \
+	  python setup.py build; \
+	  python setup.py install --prefix=$(ROOT)/$(PKGROOT); \
+	  cd ../$(BABEL_DIR); \
+	  python setup.py build; \
+	  python setup.py install --prefix=$(ROOT)/$(PKGROOT); \
+	  cd ../$(WRAPT_DIR); \
+	  python setup.py build; \
+	  python setup.py install --prefix=$(ROOT)/$(PKGROOT); \
+          cd ../$(KEYSTONECLIENT_DIR); \
+          python setup.py build; \
+	  python setup.py install --prefix=$(ROOT)/$(PKGROOT); \
+	  cd ../$(SOURCE_DIR); \
+	  python setup.py build; \
+	  python setup.py install --prefix=$(ROOT)/$(PKGROOT) --root=/ --single-version-externally-managed; \
 	)
 	$(INSTALL_LICENSE_FILES)
 	@echo "::: Package $(NAME) install complete :::"
