@@ -8,7 +8,7 @@ endif
 
 NAME           = sdsc-swiftclient_py$(PYVERSION)
 VERSION        = 3.4.0
-RELEASE        = 1
+RELEASE        = 2
 PKGROOT        = /opt/swiftclient
 
 SRC_SUBDIR     = swiftclient
