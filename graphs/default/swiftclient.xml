@@ -11,12 +11,19 @@
 	All rights reserved. Rocks(r) v7 www.rocksclusters.org
 	</copyright>
 
-	<edge from="data-mover">
-		<to>swiftclient-base</to>
-	</edge>
+        <edge from="login">
+          <to>swiftclient-base</to>
+        </edge>
+        <order head="login">
+          <tail>swiftclient-base</tail>
+        </order>
 
-	<order head="data-mover">
-		<tail>swiftclient-base</tail>
-	</order>
+       <edge from="compute">
+         <to>swiftclient-base</to>
+       </edge>
+       <order head="compute">
+         <tail>swiftclient-base</tail>
+       </order>
+
 
 </graph>
