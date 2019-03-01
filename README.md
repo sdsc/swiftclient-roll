@@ -67,7 +67,7 @@ To install, execute these instructions on a Rocks frontend:
 % rocks create distro
 % rocks run roll swiftclient | bash
 ```
-
+ 
 In addition to the software itself, the roll installs swiftclient environment
 module files in:
 
