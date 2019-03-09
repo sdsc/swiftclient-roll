@@ -14,6 +14,8 @@ my $output;
 
 my $TESTFILE = 'tmpswiftclient';
 
+my @EXES = ('netaddr','oslo-config-generator','swift');
+
 if($appliance =~ /$installedOnAppliancesPattern/) {
   ok($isInstalled, 'swiftclient installed');
 } else {
@@ -22,8 +24,10 @@ if($appliance =~ /$installedOnAppliancesPattern/) {
 SKIP: {
 
   skip 'swiftclient not installed', 4 if ! $isInstalled;
-  $output = `module load swiftclient; /opt/swiftclient/bin/swift  --help 2>&1`;
-  like($output, qr/usage: swift \[--version\] \[--help\] \[--os-help\] \[--snet\] \[--verbose\]/, 'swiftclient runs');
+  foreach $exe(@EXES) {
+       $output=`module load swiftclient; /opt/swiftclient/bin/$exe  --help </dev/null 2>&1`;
+       like($output, qr/usage: $exe|$exe shell/, "$exe runs");
+  }
   `/bin/ls /opt/modulefiles/applications/swiftclient/[0-9]* 2>&1`;
   ok($? == 0, 'swiftclient module installed');
   `/bin/ls /opt/modulefiles/applications/swiftclient/.version.[0-9]* 2>&1`;
