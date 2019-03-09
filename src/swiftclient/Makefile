@@ -61,15 +61,14 @@ REDHAT.ROOT = $(CURDIR)/../../
 include Rules.mk
 include $(SDSCDEVEL)/Pull.mk
 include $(SDSCDEVEL)/Rules.mk
+.PHONY: $(SWIFTCLIENT_PACKAGES)
 
 
 $(NAME).spec: DESCRIPTION LICENSE
 
 DESCRIPTION:
-	$(MODULE_LOAD_PYTHON); \
 	( \
 	  $(DESCRIBE_PKG); \
-	  $(DESCRIBE_PYTHON); \
 	) > $@
 
 
@@ -79,74 +78,45 @@ LICENSE: $(SRC_DIRS)
 
 CACHE_DIR=$(REDHAT.ROOT)/cache
 
-build: $(SRC_DIRS)
+swiftclientdownload : $(SWIFTCLIENT_PACKAGES)
+	for PYTHON_PACKAGE in $(SWIFTCLIENT_PKGS); do \
+           echo "::: Downloading $(DL.SERVER)/$(DL.PATH)/$${PYTHON_PACKAGE} :::"; \
+           if [ -f $${PYTHON_PACKAGE} ]; then \
+                echo "::: $${PYTHON_PACKAGE} exists. Skipping... :::" ; \
+           else \
+                $(DL.CMD) $(DL.OPTS) $(DL.SERVER)/$(DL.PATH)/$${PYTHON_PACKAGE} ; \
+                echo "::: Verifying size of $${PYTHON_PACKAGE} :::" ; \
+                $(GREP.CMD) `$(STAT.CMD) --printf="%s" $${PYTHON_PACKAGE}` $(VERIFY.HASHES) ; \
+                echo "::: Verifying hash of $${PYTHON_PACKAGE} :::" ; \
+                $(GREP.CMD) `$(VERIFY.CMD) $(VERIFY.OPTS) $${PYTHON_PACKAGE} ` $(VERIFY.HASHES) ; \
+                echo "" ; \
+           fi; \
+           echo "::: Unbundling $${PYTHON_PACKAGE} :::"; \
+           $(TAR.CMD) $(TGZ.OPTS) $${PYTHON_PACKAGE}; \
+           echo ""; \
+        done
+
+
+build: $(SRC_DIRS) swiftclientdownload
 	@echo "::: Package $(NAME) build complete :::"
 	
-install::
-	mkdir -p -m 755 $(ROOT)/$(PKGROOT)/lib/python$(PYVERSION)/site-packages
+install:: $(SWIFTCLIENT_PACKAGES)
+	mkdir -p $(ROOT)/$(PKGROOT)/lib/python$(PYVERSION)/site-packages
 	( \
-	  $(MODULE_LOAD_PYTHON); \
-          export PYTHONPATH=$(ROOT)/$(PKGROOT)/lib/python$(PYVERSION)/site-packages:$${PYTHONPATH}; \
-	  cd $(FUTURES_DIR); \
-	  python setup.py build; \
-	  python setup.py install --prefix=$(ROOT)/$(PKGROOT); \
-	  cd ../$(REQUESTS_DIR); \
-	  python setup.py build; \
-	  python setup.py install --prefix=$(ROOT)/$(PKGROOT); \
-	  cd ../$(STEVEDORE_DIR); \
-	  python setup.py build; \
-	  python setup.py install --prefix=$(ROOT)/$(PKGROOT); \
-	  cd ../$(POSITIONAL_DIR); \
-	  python setup.py build; \
-	  python setup.py install --prefix=$(ROOT)/$(PKGROOT); \
-	  cd ../$(OSLO.CONFIG_DIR); \
-	  python setup.py build; \
-	  python setup.py install --prefix=$(ROOT)/$(PKGROOT); \
-	  cd ../$(KEYSTONEAUTH1_DIR); \
-	  python setup.py build; \
-	  python setup.py install --prefix=$(ROOT)/$(PKGROOT); \
-	  cd ../$(DEBTCOLLECTOR_DIR); \
-	  python setup.py build; \
-	  python setup.py install --prefix=$(ROOT)/$(PKGROOT); \
-	  cd ../$(OSLO.UTILS_DIR); \
-	  python setup.py build; \
-	  python setup.py install --prefix=$(ROOT)/$(PKGROOT); \
-	  cd ../$(OSLO.SERIALIZATION_DIR); \
-	  python setup.py build; \
-	  python setup.py install --prefix=$(ROOT)/$(PKGROOT); \
-	  cd ../$(OSLO.I18N_DIR); \
-	  python setup.py build; \
-	  python setup.py install --prefix=$(ROOT)/$(PKGROOT); \
-	  cd ../$(BABEL_DIR); \
-	  python setup.py build; \
-	  python setup.py install --prefix=$(ROOT)/$(PKGROOT); \
-	  cd ../$(WRAPT_DIR); \
-	  python setup.py build; \
-	  python setup.py install --prefix=$(ROOT)/$(PKGROOT); \
-	  cd ../$(ISO8601_DIR); \
-	  python setup.py build; \
-	  python setup.py install --prefix=$(ROOT)/$(PKGROOT); \
-	  cd ../$(MONOTONIC_DIR); \
-	  python setup.py build; \
-	  python setup.py install --prefix=$(ROOT)/$(PKGROOT); \
-	  cd ../$(NETADDR_DIR); \
-	  python setup.py build; \
-	  python setup.py install --prefix=$(ROOT)/$(PKGROOT); \
-	  cd ../$(RFC3986_DIR); \
-	  python setup.py build; \
-	  python setup.py install --prefix=$(ROOT)/$(PKGROOT); \
-	  cd ../$(CERTIFI_DIR); \
-	  python setup.py build; \
-	  python setup.py install --prefix=$(ROOT)/$(PKGROOT); \
-          cd ../$(KEYSTONECLIENT_DIR); \
-          python setup.py build; \
-	  python setup.py install --prefix=$(ROOT)/$(PKGROOT); \
-	  cd ../$(SOURCE_DIR); \
-	  python setup.py build; \
-	  python setup.py install --prefix=$(ROOT)/$(PKGROOT) --root=/ --single-version-externally-managed; \
+          for PYTHON_DIR in $(SWIFTCLIENT_DIRS); do \
+             cd $${PYTHON_DIR}; \
+             export PYTHONPATH=$(ROOT)/$(PKGROOT)/lib/python$(PYVERSION)/site-packages; \
+             python$(PYVERSION) setup.py build; \
+	     python$(PYVERSION) setup.py install --prefix=$(ROOT)/$(PKGROOT); \
+             cd ..; \
+          done; \
+          cd $(SOURCE_DIR); \
+          export PYTHONPATH=$(ROOT)/$(PKGROOT)/lib/python$(PYVERSION)/site-packages; \
+          python$(PYVERSION) setup.py build; \
+	  python$(PYVERSION) setup.py install --prefix=$(ROOT)/$(PKGROOT); \
 	)
 	$(INSTALL_LICENSE_FILES)
 	@echo "::: Package $(NAME) install complete :::"
 
 clean::
-	rm -rf $(SOURCE_DIR) $(SOURCE_DIR)2 $(SINGLEDISPATCH_DIR) $(SINGLEDISPATCH_DIR)2 DESCRIPTION LICENSE
+	rm -rf DESCRIPTION LICENSE $(SWIFTCLIENT_PACKAGES)

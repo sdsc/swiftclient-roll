@@ -6,6 +6,7 @@ include $(SDSCDEVEL)/Rules.mk
 
 $(VERSION_INC): $(VERSION_SRC)
 	/bin/grep 'VERSION.*=' $(VERSION_SRC) > $@
+	perl -pi -e '$$_ = "" if m/eval/' $@
  
 build:
 
