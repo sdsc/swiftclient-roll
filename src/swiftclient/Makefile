@@ -114,6 +114,10 @@ install:: $(SWIFTCLIENT_PACKAGES)
           export PYTHONPATH=$(ROOT)/$(PKGROOT)/lib/python$(PYVERSION)/site-packages; \
           python$(PYVERSION) setup.py build; \
 	  python$(PYVERSION) setup.py install --prefix=$(ROOT)/$(PKGROOT); \
+          files=`ls $(ROOT)/$(PKGROOT)/bin/*`; \
+          for file in $$files;do \
+             sed -i 's/\/bin\/python2.7/\/bin\/env python/' $$file; \
+          done; \
 	)
 	$(INSTALL_LICENSE_FILES)
 	@echo "::: Package $(NAME) install complete :::"
