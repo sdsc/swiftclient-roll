@@ -101,7 +101,7 @@ build: $(SRC_DIRS) swiftclientdownload
 	@echo "::: Package $(NAME) build complete :::"
 	
 install:: $(SWIFTCLIENT_PACKAGES)
-	mkdir -p -m 755 $(ROOT)/$(PKGROOT)
+	mkdir -p -m 755 $(ROOT)/$(PKGROOT)/lib/python2.7/site-packages
 	$(PKGROOT_BIND_MOUNT)
 	( \
           for PYTHON_DIR in $(SWIFTCLIENT_DIRS); do \
