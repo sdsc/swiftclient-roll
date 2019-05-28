@@ -102,11 +102,12 @@ build: $(SRC_DIRS) swiftclientdownload
 	
 install:: $(SWIFTCLIENT_PACKAGES)
 	mkdir -p -m 755 $(ROOT)/$(PKGROOT)/lib/python2.7/site-packages
+	mkdir -p -m 755 $(ROOT)/$(PKGROOT)/lib64/python2.7/site-packages
 	$(PKGROOT_BIND_MOUNT)
 	( \
           for PYTHON_DIR in $(SWIFTCLIENT_DIRS); do \
              cd $${PYTHON_DIR}; \
-             export PYTHONPATH=$(PKGROOT)/lib/python$(PYVERSION)/site-packages; \
+             export PYTHONPATH=$(PKGROOT)/lib/python$(PYVERSION)/site-packages:$(PKGROOT)/lib64/python$(PYVERSION)/site-packages; \
              python$(PYVERSION) setup.py build; \
 	     python$(PYVERSION) setup.py install --prefix=$(PKGROOT); \
              cd ..; \
