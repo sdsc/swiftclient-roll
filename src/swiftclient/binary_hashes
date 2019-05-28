@@ -32,9 +32,10 @@
          270607  f62eccd384906632af4b8b0e8949b50e780406dd  PyYAML-3.13.tar.gz
          457879  6ec26db1662af17369b3f716cca0ffe9f815a662  requests-2.8.0.tar.gz
           39381  c6ee1e09f211156744dc422717d1e4c00c313cfb  rfc3986-1.1.0.tar.gz
+          33311  6be988b6221eadaf63322d1ef595c4ab79e9ab49  scandir-1.10.0.tar.gz
          788106  b6f9c6ff2acfadc61144a3f8d766579170fd4884  setuptools-40.8.0.tar.gz
            6051  b7632dd260d39fbd37a1f6ad35a1ab6a3942c611  simplegeneric-0.8.1.tar.gz
-          29860  353f31f9fc2b90a7c0d44fffa0a39d6c58b84632  six-1.11.0.tar.gz
+          32725  02c0a14c853df2369cffd9d61daaf64b4ebbfba3  six-1.12.0.tar.gz
          505985  30084c79f843c35d89a76c23d05c79c888cbe0a2  stevedore-1.25.0.tar.gz
           88173  c869809a117f49e87a665b73dc7d314c52ece946  traitlets-4.3.2.tar.gz
           22884  dd9a929f3dd4a6de45e46ed04b325b8c1cda7046  wcwidth-0.1.7.tar.gz
