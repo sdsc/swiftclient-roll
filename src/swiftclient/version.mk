@@ -19,7 +19,7 @@ SOURCE_VERSION = $(VERSION)
 SOURCE_PKG     = $(SOURCE_NAME)-$(SOURCE_VERSION).$(SOURCE_SUFFIX)
 SOURCE_DIR     = $(SOURCE_PKG:%.$(SOURCE_SUFFIX)=%)
 
-SWIFTCLIENT_PACKAGES = setuptools-40.8.0 ipython-5.5.0 eggs-0.0.3 funcsigs-1.0.2 pytz-2016.10 wcwidth-0.1.7 ptyprocess-0.6.0 ipython_genutils-0.2.0 parso-0.3.2 jedi-0.13.2 six-1.12.0 prompt_toolkit-1.0.15 scandir-1.10.0 pathlib2-2.2.0 pexpect-4.6.0 pickleshare-0.7.5 decorator-4.3.0 Pygments-2.3.1 backports.shutil_get_terminal_size-1.0.0 traitlets-4.3.2 backcall-0.1.0 Babel-2.5.0 certifi-2017.7.27.1 debtcollector-1.17.0 futures-3.1.1 iso8601-0.1.12 keystoneauth1-3.2.0 monotonic-1.3 netaddr-0.7.19 oslo.config-4.11.0 oslo.i18n-3.17.0 oslo.serialization-2.20.0 oslo.utils-3.28.0 positional-1.2.1 python-keystoneclient-3.13.0 python-swiftclient-3.4.0 PyYAML-3.13 requests-2.8.0 rfc3986-1.1.0 stevedore-1.25.0 wrapt-1.10.11 pbr-5.1.3 enum34-1.1.6 prompt_toolkit-1.0.15 simplegeneric-0.8.1
+SWIFTCLIENT_PACKAGES = setuptools-40.8.0 ipython-5.5.0 eggs-0.0.3 funcsigs-1.0.2 pytz-2016.10 wcwidth-0.1.7 ptyprocess-0.6.0 ipython_genutils-0.2.0 parso-0.3.2 jedi-0.13.2 six-1.12.0 prompt_toolkit-1.0.15 scandir-1.10.0 pathlib2-2.2.0 pexpect-4.6.0 pickleshare-0.7.5 decorator-4.3.0 Pygments-2.3.1 backports.shutil_get_terminal_size-1.0.0 traitlets-4.3.2 backcall-0.1.0 Babel-2.5.0 certifi-2017.7.27.1 debtcollector-1.17.0 futures-3.1.1 iso8601-0.1.12 keystoneauth1-3.2.0 monotonic-1.3 netaddr-0.7.19 oslo.config-4.11.0 oslo.i18n-3.17.0 oslo.serialization-2.20.0 oslo.utils-3.28.0 positional-1.2.1 python-keystoneclient-3.13.0 PyYAML-3.13 requests-2.8.0 rfc3986-1.1.0 stevedore-1.25.0 wrapt-1.10.11 pbr-5.1.3 enum34-1.1.6 simplegeneric-0.8.1
 
 
 $(SWIFTCLIENT_PACKAGES):
