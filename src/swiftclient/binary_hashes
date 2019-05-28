@@ -19,7 +19,7 @@
           28693  6be95fd3e2b51fbdc0a25c2d9d7ec5910d02b938  oslo.serialization-2.20.0.tar.gz
           85122  3e5d6966a0bdc75db514745881dcea749f60fe68  oslo.utils-3.28.0.tar.gz
          387587  2474d1503876de883807320ca7edb74c83356348  parso-0.3.2.tar.gz
-          33813  3e35359f4045987384a73f4c7d60762feacf172a  pathlib2-2.3.3.tar.gz
+          31631  dcecbc2fb7800ccb62d82cde576c35b2ff963d00  pathlib2-2.2.0.tar.gz
          115241  646643658e80e36f53ae50df5aa7819c7975e7e4  pbr-5.1.3.tar.gz
          148966  5adb1f71dbccad90add7d3710deab97632517b6b  pexpect-4.6.0.tar.gz
            6161  ccda2a19076c36145cb9f7056c3a3fa94557863e  pickleshare-0.7.5.tar.gz
