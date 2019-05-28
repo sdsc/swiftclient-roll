@@ -101,24 +101,26 @@ build: $(SRC_DIRS) swiftclientdownload
 	@echo "::: Package $(NAME) build complete :::"
 	
 install:: $(SWIFTCLIENT_PACKAGES)
-	mkdir -p $(ROOT)/$(PKGROOT)/lib/python$(PYVERSION)/site-packages
+	mkdir -p -m 755 $(ROOT)/$(PKGROOT)
+	$(PKGROOT_BIND_MOUNT)
 	( \
           for PYTHON_DIR in $(SWIFTCLIENT_DIRS); do \
              cd $${PYTHON_DIR}; \
-             export PYTHONPATH=$(ROOT)/$(PKGROOT)/lib/python$(PYVERSION)/site-packages; \
+             export PYTHONPATH=$(PKGROOT)/lib/python$(PYVERSION)/site-packages; \
              python$(PYVERSION) setup.py build; \
-	     python$(PYVERSION) setup.py install --prefix=$(ROOT)/$(PKGROOT); \
+	     python$(PYVERSION) setup.py install --prefix=$(PKGROOT); \
              cd ..; \
           done; \
           cd $(SOURCE_DIR); \
-          export PYTHONPATH=$(ROOT)/$(PKGROOT)/lib/python$(PYVERSION)/site-packages; \
+          export PYTHONPATH=$(PKGROOT)/lib/python$(PYVERSION)/site-packages; \
           python$(PYVERSION) setup.py build; \
-	  python$(PYVERSION) setup.py install --prefix=$(ROOT)/$(PKGROOT); \
-          files=`ls $(ROOT)/$(PKGROOT)/bin/*`; \
+	  python$(PYVERSION) setup.py install --prefix=$(PKGROOT); \
+          files=`ls $(PKGROOT)/bin/*`; \
           for file in $$files;do \
              sed -i 's/\/bin\/python2.7/\/bin\/env python/' $$file; \
           done; \
 	)
+	$(PKGROOT_BIND_UMOUNT)
 	$(INSTALL_LICENSE_FILES)
 	@echo "::: Package $(NAME) install complete :::"
 
