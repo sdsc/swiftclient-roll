@@ -1,4 +1,4 @@
-fndef ROLLPY
+ifndef ROLLPY
   ROLLPY = python
 endif
 
