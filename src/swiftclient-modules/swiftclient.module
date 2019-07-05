@@ -2,7 +2,6 @@
 module-whatis "swiftclient"
 module-whatis "Version: VERSION"
 module-whatis "Description: swiftclient"
-module-whatis "Compiler: ROLLCOMPILER"
 setenv SWIFTCLIENTHOME /opt/swiftclient
 prepend-path PATH /opt/swiftclient/bin
 foreach lib [glob -nocomplain /opt/swiftclient/lib*/pythonPYVER/site-packages] {
