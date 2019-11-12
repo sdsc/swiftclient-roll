@@ -120,6 +120,8 @@ install:: $(SWIFTCLIENT_PACKAGES)
           for file in $$files;do \
              sed -i 's/\/bin\/python2.7/\/bin\/env python/' $$file; \
           done; \
+          find $(ROOT)/$(PKGROOT) -perm 0777 -exec chmod 0755 {} \;; \
+          find $(ROOT)/$(PKGROOT) -perm 0666 -exec chmod 0644 {} \; \
 	)
 	$(PKGROOT_BIND_UMOUNT)
 	$(INSTALL_LICENSE_FILES)
